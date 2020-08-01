@@ -17,8 +17,8 @@ favicon: favicon.ico
 
 repository: zhailuxu/zhailuxu.github.io
 github_url: https://github.com/zhailuxu
-url: http://www.ityouknow.com
-enforce_ssl: ityouknow.com
+##url: http://www.ityouknow.com
+##enforce_ssl: ityouknow.com
 
 ## Gem
 plugins:
