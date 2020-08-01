@@ -57,32 +57,32 @@ menus:
 
   -
     href: http://favorites.ren/stock.html
-    label: 股票
+    label: 
     target: _blank  
 
   -
     href: /money.html
-    label: 挣钱
+    label: 
     target: _self   
 
   -
     href: /it.html
-    label: 深度
+    label: 
     target: _self
 
   -
     href: /life.html
-    label: 故事
+    label: 
     target: _self
 
   -
     href: /arch.html
-    label: 架构
+    label: 
     target: _self
 
   -
     href: /link.html
-    label: 友链
+    label: 
     target: _self
 
   -
