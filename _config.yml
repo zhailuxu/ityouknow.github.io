@@ -13,7 +13,7 @@ email: zhailuxu@163.com
 description: 加多，著作《Java并发编程之美》，《Java异步编程实战》等，本站内容涵盖技术探讨与人生经验分享。
 keywords: 加多,阿里加多,Spring,Spring Boot,Java并发编程之美,Java异步编程实战,Java
 encoding: "utf-8"
-favicon: favicon.ico 
+favicon: my.ico 
 
 repository: zhailuxu/zhailuxu.github.io
 github_url: https://github.com/zhailuxu
