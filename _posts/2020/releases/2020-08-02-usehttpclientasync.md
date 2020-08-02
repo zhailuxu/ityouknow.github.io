@@ -15,6 +15,8 @@ Java中的阻塞I/O是一种高效、便捷的I/O模型，非常适合并发连�
 
 异步I/O模型可能更适合于比较看重资源高效利用、系统可伸缩性、以及可以同时支持更多HTTP连接的场景。
 
+<!--more-->
+
 # 二、HttpClient中的Future
 在HttpClient官网Tutorial的高级话题中，我们可以发现其提供了用于异步执行的FutureRequestExecutionService服务类。
 
