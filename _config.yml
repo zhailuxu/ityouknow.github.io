@@ -103,7 +103,7 @@ navs:
     target: _self
     
   -
-    href: https://mp.weixin.qq.com/s/pjG-jYKAqq4lGkRtrykV4Q
+    href: https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU2MTA1OTgyMQ==&action=getalbum&album_id=1342577525351989249&subscene=&scenenote=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2FpjG-jYKAqq4lGkRtrykV4Q#wechat_redirect
     label: GoLang
     target: _self
 
@@ -115,7 +115,7 @@ navs:
   -
     href: https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1342599230204100609&__biz=MzU2MTA1OTgyMQ==#wechat_redirect
     label: Thinking
-    target: _blank
+    target: _self
 
   -
     href: /archives.html
@@ -162,19 +162,19 @@ labels:
 classes:
 
   -
-    href: /cartoon.html
-    name: 不会笑青年
-    describe: 内心沉稳 ，放荡不羁。
+    href: https://mp.weixin.qq.com/s/XKa0mjwgjeZbRokm61lGHw
+    name: Java并发编程之美
+    describe: 深度剖析JUC包原理。
 
   -
-    href: /life.html
-    name: 我的故事
-    describe: 生活就是故事，故事就是生活
+    href: https://mp.weixin.qq.com/s/k9YBd16-ToI5e5Gmlj6qkw
+    name: Java异步编程实战
+    describe: 国内第一本异步编程书籍
 
   -
-    href: /it.html
-    name: IT行业深度报道
-    describe: IT大佬，互联网知名公司的故事
+    href: https://mp.weixin.qq.com/s/jTD286hOWwZDkdrWN3FmgQ
+    name: 深度剖析ApacheDubbo核心技术内幕
+    describe: 深度解析Rpc框架原理
 
 
 
