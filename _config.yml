@@ -126,33 +126,9 @@ navs:
 
 # labels. my blog key words
 labels:
- -
+  -
     href: https://gitbook.cn/gitchat/author/599a26ad8f27e07e3688eac6
     label: Chat
-    target: _blank
-  -
-    href: /payment.html
-    label:      
-    target: _self
-
-  -
-    href: /fastdfs.html
-    label: 
-    target: _blank
-
-  -
-    href: /mongodb.html
-    label: 
-    target: _blank
-
-  -
-    href: /docker.html
-    label: 
-    target: _blank
-
-  -
-    href: /open-source.html
-    label:   
     target: _blank
 
  
