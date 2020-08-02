@@ -98,53 +98,24 @@ navs:
     label: Home
 
   -
-    href: /cartoon.html
-    label: Cartoon
+    href: https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1382778584112414720&__biz=MzU2MTA1OTgyMQ==#wechat_redirect
+    label: MyBook
     target: _self
-
-  -
-    href: /spring-boot.html
-    label: Spring Boot
-    target: _self
-    subnav:
-
-      -
-        subHref: /spring-boot.html
-        subLabel: Spring Boot
-
-      -
-        subHref: /spring-cloud.html
-        subLabel: Spring Cloud
-
-  -
-    href: http://www.justdojava.com
-    label: Java
-    target: _blank
-    subnav:
-
-      -
-        subHref: /java.html
-        subLabel: Jvm 系列文章
-        
-      -
-        subHref: http://www.justdojava.com
-        subLabel: Java 极客技术
-        target: _blank
-
-  -
     
-    href: /python.html
-    label: Python
-    subnav:
+  -
+    href: https://mp.weixin.qq.com/s/pjG-jYKAqq4lGkRtrykV4Q
+    label: GoLang
+    target: _self
 
-      -
-        subHref: /python.html
-        subLabel: Python 教程
-        
-      -
-        subHref: http://www.justdopython.com
-        subLabel: Python 技术
-        target: _blank
+  -
+    href: https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1361698102453059585&__biz=MzU2MTA1OTgyMQ==#wechat_redirect
+    label: Java
+    target: _self
+
+  -
+    href: https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1342599230204100609&__biz=MzU2MTA1OTgyMQ==#wechat_redirect
+    label: Thinking
+    target: _blank
 
   -
     href: /archives.html
