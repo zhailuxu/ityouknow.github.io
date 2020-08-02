@@ -19,7 +19,7 @@ tags: [java]
 本书[《Java异步编程实战》]([https://item.jd.com/12778422.html](https://item.jd.com/12778422.html))的出现则是为了打破这种局面，本书旨在把Java中相关的异步编程技术进行归纳分类总结，然后呈现给大家，让大家可以有一个统一的地方来查看与探究。
 
 
-#二、 本书内容
+# 二、 本书内容
 
 在日常开发中我们经常会遇到这样的情况，就是需要异步的处理一些事情，而不需要知道异步任务的结果；比如在调用线程里面异步打日志，为了不让日志打印阻塞调用线程，会把日志设置为异步方式。如下图1-2-1日志异步化打印，使用一个内存队列把日志打印异步化，使用单一线程来消费队列里面日志事件执行具体的日志落盘操作（本质是一个多生产单消费模型），这种情况下调用线程把日志任务放入队列后就继续去干自己的事情了，而不再关心日志任务具体是什么时候入盘的；
 ![image.png](https://upload-images.jianshu.io/upload_images/5879294-5badf08eb800a7db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -89,7 +89,3 @@ Servlet3.0规范中则提供了异步处理的能力，让Servlet容器中的线
 
 # 三、业界技术大牛高度推荐
 ![image.png](https://upload-images.jianshu.io/upload_images/5879294-d0e8fc10dd6dd932.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-# 四、更多精彩
-
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-1a06dd50396a7ae9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
