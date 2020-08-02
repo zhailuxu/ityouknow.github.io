@@ -190,11 +190,6 @@ HttpAsyncClient则使用Java NIO的异步非阻塞事件驱动I/O模型，实现
 
 
 # 四、总结
-## 4.1、总结2
-### 4.1.2、总结3
-
-本文概要讲解了Http的异步调用，关于更多Java中异步调用与异步执行的知识，可以参考[《Java异步编程实战》](https://mp.weixin.qq.com/s/yF9cX4t5lUUPNm2-vKzp2Q
-)
 本文概要讲解了Http的异步调用，关于更多Java中异步调用与异步执行的知识，可以参考[《Java异步编程实战》](https://mp.weixin.qq.com/s/yF9cX4t5lUUPNm2-vKzp2Q
 )
 
