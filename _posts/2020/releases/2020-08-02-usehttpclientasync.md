@@ -2,7 +2,6 @@
 layout: post
 title: HttpClient的异步调用，你造？
 category: java
-no-post-nav: false
 excerpt: 本文来深度探讨如何正确使用httpclient的异步调用。
 tags: [java]
 ---
@@ -118,6 +117,7 @@ FutureRequestExecutionService其实是用一个HttpRequestFutureTask包装请求
 			Thread.sleep(10000);
 ...
 ```
+
 如上代码，使用CallBack后，调用线程就得到了彻底解放，就不必再阻塞获取结果了，当http返回结果后，会自动调用我们注册的CallBack。
 
 # 三、HttpAsyncClient-真正的异步
