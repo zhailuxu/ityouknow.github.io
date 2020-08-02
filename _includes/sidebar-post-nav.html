@@ -27,7 +27,8 @@
 //                         + "</a></dd>");
 //             });
 //         });
-           $(".markdown-body").prepend("<h0 style=\"display:none\"></h0>");
+ $(document).ready(function(){
+	$(".siblings").prepend("<h0 style=\"display:none\"></h0>");
            var children = $("article h0").nextUntil("h7","h1,h2,h3,h4,h5,h6")
             children.each(function( index ) {
                 $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
@@ -36,7 +37,6 @@
                         + "&nbsp;&nbsp;" + $(this).text()
                         + "</a></dd>");
             });
-
 
         var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
 
@@ -60,7 +60,6 @@
         });
 
         $("a.jumper").on("click", function( e ) {
-
             e.preventDefault();
 
             $("body, html").animate({
@@ -68,6 +67,7 @@
             }, 600);
 
         });
+	
+	
     });
-
 </script>
