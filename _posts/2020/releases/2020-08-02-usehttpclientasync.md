@@ -10,7 +10,8 @@ tags: [java]
 # 一、前言
 HttpClient提供了两种I/O模型：经典的java阻塞I/O模型和基于Java NIO的异步非阻塞事件驱动I/O模型。
 
-Java中的阻塞I/O是一种高效、便捷的I/O模型，非常适合并发连接数量相对适中的高性能应用程序。只要并发连接的数量在1000个以下并且连接大多忙于传输数据，阻塞I/O模型就可以提供最佳的数据吞吐量性能。然而，对于连接大部分时间保持空闲的应用程序，上下文切换的开销可能会变得很大，这时非阻塞I/O模型可能会提供更好的替代方案。
+Java中的阻塞I/O是一种高效、便捷的I/O模型，非常适合并发连接数量相对适中的高性能应用程序。只要并发连接的数量在1000个以下并且连接大多忙于传输数据，阻塞I/O模型就可以提供最佳的数据吞吐量性能。
+然而，对于连接大部分时间保持空闲的应用程序，上下文切换的开销可能会变得很大，这时非阻塞I/O模型可能会提供更好的替代方案。
 
 异步I/O模型可能更适合于比较看重资源高效利用、系统可伸缩性、以及可以同时支持更多HTTP连接的场景。
 
@@ -21,7 +22,8 @@ Java中的阻塞I/O是一种高效、便捷的I/O模型，非常适合并发连�
 
 使用FutureRequestExecutionService的优点是，我们可以使用多个线程并发调度请求、设置任务超时，或者在不再需要响应时取消它们。
 
-FutureRequestExecutionService其实是用一个HttpRequestFutureTask包装请求，该HttpRequestFutureTask扩展了JDK中的FutureTask。这个类允许我们取消任务、跟踪各种执行指标，如请求持续时间等。
+FutureRequestExecutionService其实是用一个HttpRequestFutureTask包装请求，该HttpRequestFutureTask扩展了JDK中的FutureTask。
+这个类允许我们取消任务、跟踪各种执行指标，如请求持续时间等。
 
 下面我们看一个例子：
 ```Java
@@ -72,7 +74,8 @@ FutureRequestExecutionService其实是用一个HttpRequestFutureTask包装请求
 
 代码3创建了一个HttpClient对象，代码4创建一个FutureRequestExecutionService，参数1为创建的httpclient对象，参数2为创建的线程池。
 
-代码5则创建2个Get请求参数，然后执行代码5.2发起两个http请求,该调用会马上返回自己对于的HttpRequestFutureTask对象，调用线程也会马上返回，然后调用线程就可以在5.3做其他的事情，最后在需要获取http响应结果的地方，比如代码5.4调用两个future的get()方法来获取结果。
+代码5则创建2个Get请求参数，然后执行代码5.2发起两个http请求,该调用会马上返回自己对于的HttpRequestFutureTask对象，调用线程也会马上返回，
+然后调用线程就可以在5.3做其他的事情，最后在需要获取http响应结果的地方，比如代码5.4调用两个future的get()方法来获取结果。
 
 如上基于Future方式，我们可以并发的发起两个http请求，而之前阻塞方式，则是顺序执行的。
 
@@ -116,7 +119,8 @@ FutureRequestExecutionService其实是用一个HttpRequestFutureTask包装请求
 如上代码，使用CallBack后，调用线程就得到了彻底解放，就不必再阻塞获取结果了，当http返回结果后，会自动调用我们注册的CallBack。
 
 # 三、HttpAsyncClient-真正的异步
-上面HttpClient提供的CallBack的方式，虽然解放了调用线程，但是并不是真正意义上的异步调用，因为其异步调用的支持是基于我们创建的executorService线程。即：虽然发起http调用后，调用线程马上返回了，但是其内部还是使用executorService中的一个线程阻塞等待响应结果。
+上面HttpClient提供的CallBack的方式，虽然解放了调用线程，但是并不是真正意义上的异步调用，因为其异步调用的支持是基于我们创建的executorService线程。
+即：虽然发起http调用后，调用线程马上返回了，但是其内部还是使用executorService中的一个线程阻塞等待响应结果。
 
 HttpAsyncClient则使用Java NIO的异步非阻塞事件驱动I/O模型，实现了真正意义的异步调用，使用HttpAsyncClient我们需要引入其专门的包：
 ```Java
@@ -177,7 +181,8 @@ HttpAsyncClient则使用Java NIO的异步非阻塞事件驱动I/O模型，实现
 
 如上代码1，创建异步回调实现，用于处理Http响应结果。代码2创建了异步HttpClient,代码3.0启动client,代码3.2发起请求。
 
-基于Java NIO的异步，当发起请求后，调用方不会使用任何线程同步等待http服务端的响应结果（少量的NIO线程不算哦，因为其个数固定，并且不随并发请求数量变化），而是会使用少量内存来记录请求信息，以便服务端响应结果回来后，可以找到对应的回调函数进行执行。
+基于Java NIO的异步，当发起请求后，调用方不会使用任何线程同步等待http服务端的响应结果（少量的NIO线程不算哦，因为其个数固定，并且不随并发请求数量变化），
+而是会使用少量内存来记录请求信息，以便服务端响应结果回来后，可以找到对应的回调函数进行执行。
 
 
 
