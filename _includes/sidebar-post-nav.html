@@ -27,7 +27,7 @@
 //                         + "</a></dd>");
 //             });
 //         });
-           $(".siblings").prepend("<h0 style=\"display:none\"></h0>");
+           $(".markdown-body").prepend("<h0 style=\"display:none\"></h0>");
            var children = $("article h0").nextUntil("h7","h1,h2,h3,h4,h5,h6")
             children.each(function( index ) {
                 $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
