@@ -9,24 +9,34 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function(){
-        $( "article h1" ).each(function( index ) {
-            $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
-                    $(this).attr("id")
-                    + ">"
-                    + $(this).text()
-                    + "</a></dt>");
+//     $(document).ready(function(){
+//         $( "article h1" ).each(function( index ) {
+//             $(".post-directory dl").append("<dt><a class=\"jumper\" hre=#" +
+//                     $(this).attr("id")
+//                     + ">"
+//                     + $(this).text()
+//                     + "</a></dt>");
 
-            var children = $(this).nextUntil("h2", "h3")
+//             var children = $(this).nextUntil("h2", "h3")
 
+//             children.each(function( index ) {
+//                 $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
+//                         $(this).attr("id")
+//                         + ">"
+//                         + "&nbsp;&nbsp;- " + $(this).text()
+//                         + "</a></dd>");
+//             });
+//         });
+           $(".siblings").prepend("<h0 style=\"display:none\"></h0>");
+           var children = $("article h0").nextUntil("h7","h1,h2,h3,h4,h5,h6")
             children.each(function( index ) {
                 $(".post-directory dl").append("<dd><a class=\"jumper\" hre=#" +
                         $(this).attr("id")
                         + ">"
-                        + "&nbsp;&nbsp;- " + $(this).text()
+                        + "&nbsp;&nbsp;" + $(this).text()
                         + "</a></dd>");
             });
-        });
+
 
         var fixmeTop = $('#post-directory-module').offset().top - 100;       // get initial position of the element
 
