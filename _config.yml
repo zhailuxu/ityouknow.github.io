@@ -116,6 +116,10 @@ navs:
     href: https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&album_id=1342599230204100609&__biz=MzU2MTA1OTgyMQ==#wechat_redirect
     label: Thinking
     target: _self
+     -
+    href: https://gitbook.cn/gitchat/author/599a26ad8f27e07e3688eac6
+    label: Gitchat
+    target: _self
 
   -
     href: /archives.html
@@ -128,7 +132,7 @@ navs:
 labels:
   -
     href: https://gitbook.cn/gitchat/author/599a26ad8f27e07e3688eac6
-    label: Chat
+    label: 
     target: _blank
 
  
