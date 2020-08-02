@@ -6,7 +6,7 @@ excerpt: 本文来深度探讨如何正确使用httpclient的异步调用。
 tags: [java]
 ---
 
-# 一、前言
+## 一、前言
 HttpClient提供了两种I/O模型：经典的java阻塞I/O模型和基于Java NIO的异步非阻塞事件驱动I/O模型。
 
 Java中的阻塞I/O是一种高效、便捷的I/O模型，非常适合并发连接数量相对适中的高性能应用程序。只要并发连接的数量在1000个以下并且连接大多忙于传输数据，阻塞I/O模型就可以提供最佳的数据吞吐量性能。
@@ -16,7 +16,7 @@ Java中的阻塞I/O是一种高效、便捷的I/O模型，非常适合并发连�
 
 <!--more-->
 
-# 二、HttpClient中的Future
+## 二、HttpClient中的Future
 在HttpClient官网Tutorial的高级话题中，我们可以发现其提供了用于异步执行的FutureRequestExecutionService服务类。
 
 使用FutureRequestExecutionService，允许我们发起http调用后，调用函数马上返回（调用线程不会阻塞等到相应结果返回）一个Future对象，然后调用线程可以在需要响应结果的地方调用Future对象的get方法来阻塞等待结果。
@@ -120,7 +120,7 @@ FutureRequestExecutionService其实是用一个HttpRequestFutureTask包装请求
 
 如上代码，使用CallBack后，调用线程就得到了彻底解放，就不必再阻塞获取结果了，当http返回结果后，会自动调用我们注册的CallBack。
 
-# 三、HttpAsyncClient-真正的异步
+## 三、HttpAsyncClient-真正的异步
 上面HttpClient提供的CallBack的方式，虽然解放了调用线程，但是并不是真正意义上的异步调用，因为其异步调用的支持是基于我们创建的executorService线程。
 即：虽然发起http调用后，调用线程马上返回了，但是其内部还是使用executorService中的一个线程阻塞等待响应结果。
 
@@ -189,7 +189,7 @@ HttpAsyncClient则使用Java NIO的异步非阻塞事件驱动I/O模型，实现
 
 
 
-# 四、总结
+## 四、总结
 本文概要讲解了Http的异步调用，关于更多Java中异步调用与异步执行的知识，可以参考[《Java异步编程实战》](https://mp.weixin.qq.com/s/yF9cX4t5lUUPNm2-vKzp2Q
 )
 
