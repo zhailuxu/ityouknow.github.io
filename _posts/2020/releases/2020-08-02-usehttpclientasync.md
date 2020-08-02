@@ -2,7 +2,7 @@
 layout: post
 title: HttpClient的异步调用，你造？
 category: java
-no-post-nav: true
+no-post-nav: false
 excerpt: 本文来深度探讨如何正确使用httpclient的异步调用。
 tags: [java]
 ---
