@@ -2,7 +2,6 @@
 layout: post
 title: HttpClient连接池管理，你用对了？
 category: java
-no-post-nav: true
 excerpt: 本文来深度探讨如何正确使用httpclient。
 tags: [java]
 ---
