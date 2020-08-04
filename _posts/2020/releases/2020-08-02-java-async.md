@@ -29,12 +29,12 @@ tags: [java]
 在Java中每当我们需要执行异步任务的时候我们可以直接开启一个线程来实现，也可以把异步任务封装为任务对象投递到线程池里面来执行，在Spring框架中则提供了@Async注解把一个任务异步化来进行处理，这些内容会在后面章节具体讲解。
 
 另外有时候我们还需要在主线程等待异步任务的执行结果，这时候Future就排上用场了；比如调用线程要等执行任务A执行完毕后在顺序执行任务B，并且把两者结果拼接起来作为前端展示使用，如果调用线程是同步调用两次查询（如下图1-2-2同步调用），则整个过程耗时时间为执行任务A的耗时加上执行任务B的耗时。
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-df0ee3e58f834dd7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-2.jpeg)
 图1-2-2 同步调用
 
 如果使用异步编程（如下图1-2-3）则可以在调用线程内开启一个异步运行单元来执行任务A，开启异步运行单元后调用线程会马上返回一个Future对象（futureB），然后调用线程本身来执行任务B，等任务B执行完毕后，调用线程可以调用futureB的get（）方法获取任务A的执行结果，最后在拼接两者结果。这时由于任务A和任务B是并行运行的，所以整个过程耗时为max(调用线程执行任务B耗时，异步运行单元执行任务A耗时）。
 
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-8336367ed2724888.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-3.jpeg)
 图1-2-3 异步调用
 
 可见整个过程耗时有显著缩短，对于用户来说页面响应时间会更短，对用户体验会更好，其中异步单元的执行一般是线程池中的线程。
@@ -43,7 +43,7 @@ tags: [java]
 
 如下图1-2-4使用CompletableFuture时候当异步单元返回futureB后，调用线程可以在其上调用whenComplete方法设置一个回调函数action,然后调用线程就会马上返回了，等异步任务执行完毕后会使用异步线程来执行回调函数action，而无需调用线程干预，如果你对CompletableFuture不了解，没关系，后面章节我们会详细讲解，这里你只需要知道其解决了传统Future的缺陷就可以了。
 
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-4f70469be083c946.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-4.jpeg)
 图1-2-4 CompletableFuture异步执行
 
 JDK8还引入了Stream，它旨在有效地处理数据流（包括原始类型），其使用声明式编程让我们可以写出可读性、可维护性很强的代码，并且结合CompletableFuture可以完美的实现异步编程。但是它产生的流只能使用一次，并且缺少与时间相关的操作（例如RxJava中的基于时间窗口的缓存元素），虽然可以执行并行计算，但无法指定要使用的线程池。并且它还没有设计用于处理延迟的操作（例如RxJava中的defer操作）；而Reactor或RxJava等Reactive API就是为了解决这些问题而生的。
@@ -53,7 +53,7 @@ Reactor或RxJava等反应式API也提供Java 8 Stream的运算符，但它们更
 
 上面我们讲解了单JVM内的异步编程，那么对于跨网络的交互是否也存在异步编程范畴那？对于网络请求来说，同步调用时比较直截了当的，比如我们在一个线程A中通过RPC请求获取服务B和服务C的数据，然后基于两者结果做一些事情。在同步调用情况下，线程A需要调用服务B，然后需要同步等待服务B结果返回后，才可以对服务C发起调用，然后等服务C结果返回后才可以结合服务B和C的结果做一件事,如下图1-2-5：
 
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-d7d682583e8eeb42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-5.jpeg)
 
 图1-2-5 同步RPC调用
 
@@ -62,11 +62,11 @@ Reactor或RxJava等反应式API也提供Java 8 Stream的运算符，但它们更
 那么如何实现异步调用？在Java中NIO的出现让实现上面的功能变得简单，而高性能异步、基于事件驱动的网络编程框架Netty的出现让我们从编写繁杂的Java NIO程序出解放出来了，现在的RPC框架比如Dubbo底层网络通信就是基于Netty实现的;Netty框架将网络编程逻辑与业务逻辑处理分离开来，其内部帮我们自动处理好网络与异步处理逻辑，让我们专心写自己的业务处理逻辑，Netty的异步非阻塞能力与CompletableFuture结合就可以轻松的实现网络请求的异步调用。
 
 在执行RPC(远程过程调用)调用时候，使用异步编程可以提高系统的性能；如下图1-2-6，在异步调用情况下，当线程A调用服务B后，马上会返回一个异步的futureB对象，然后线程A可以在futureB上设置一个回调函数；然后线程A可以继续访问服务C，也会马上返回一个futureC对象，然后线程A可以在futureC上设置一个回调函数：
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-4b95800bcd9656dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-6.jpeg)
 图1-2-6 RPC异步调用
 
 如上图1-2-6可知异步调用情况下线程A可以并发的调用服务B和服务C，而不再是顺序的，由于服务B和服务C是并发运行，所以相比线程A同步调用，线程A获取到服务B和服务C结果的时间会缩短很多（同步调用情况下耗时时间为服务B和服务C返回结果耗时的和，异步调用时候耗时为max(服务B耗时，服务C耗时））；另外这里可以借助CompletableFuture的能力等两次RPC调用都异步返回结果后做一件事情，这时候调用流程如下图图1-2-7：
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-1a0983469fb425de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-7.jpeg)
 图1-2-7 合并Rpc调用结果
 
 如上图图1-2-7调用线程A首先发起服务B的远程调用，然后马上返回一个futureB对象，然后发起服务C的远程调用，然后马上返回一个futureC对象，最后调用线程A使用代码futureB.thenCombine(futureC,action)等futureB和futureC结果可用时候执行回调函数action；这里我们只是简单的概述下基于Netty的异步非阻塞能力以及CompletableFuture的可编排能力，我们可以实现功能很强大的异步编程能力，后面章节我们会以Dubbo框架为例讲解其借助Netty的非阻塞异步API实现了服务消费端的异步调用。
@@ -74,7 +74,7 @@ Reactor或RxJava等反应式API也提供Java 8 Stream的运算符，但它们更
 其实有了CompletableFuture实现异步编程，我们可以很自然的使用适配器来实现Reactive风格的编程，当我们使用RxJava API时候我们只需要使用Flowable的一些函数转换CompletableFuture为Flowable对象即可，这个我们在后面章节也会讲述。
 
 上节讲解了网络请求中的RPC框架的异步请求，其实还有一类，也就是Web请求，在Web应用中Servlet占有一席之地。在Servlet3.0规范前，Servlet容器对Servlet的处理都是每个请求对应一个线程这种1：1的模式进行处理的（如下图1-2-8），每当来一个请求时候都会开启一个Servlet容器内的线程来进行处理，如果Servlet内处理比较耗时，则会把Servlet容器内线程使用耗尽，然后容器就不能再处理新的请求。
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-d378ede7d803b482.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-8.jpeg)
 图1-2-8 Servlet的阻塞处理模型
 
 Servlet3.0规范中则提供了异步处理的能力，让Servlet容器中的线程可以及时释放，具体Servlet业务处理逻辑是在业务自己线程池内来处理；虽然Servlet3.0规范让Servlet的执行变为了异步，但是其IO还是阻塞式的，IO阻塞是说在Servlet处理请求时候从ServletInputStream中读取请求体时候是阻塞的，而我们想要的是当数据已经就绪时候通知我们去读取就可以了，因为这可以避免占用我们自己的线程来进行阻塞读取，Servlet3.1规范则提供了非阻塞IO来解决这个问题。
@@ -88,4 +88,4 @@ Servlet3.0规范中则提供了异步处理的能力，让Servlet容器中的线
 [《Java异步编程实战》](https://links.jianshu.com/go?to=%255Bhttps%3A%2F%2Fitem.jd.com%2F12778422.html%255D%28https%3A%2F%2Fitem.jd.com%2F12778422.html%29)，一书则是根据上述介绍的次序，把内容划分了若干章节，每章则具体展开讨论相应的异步编程技术。
 
 # 三、业界技术大牛高度推荐
-![image.png](https://upload-images.jianshu.io/upload_images/5879294-d0e8fc10dd6dd932.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/images/2020/async-9.jpeg)
