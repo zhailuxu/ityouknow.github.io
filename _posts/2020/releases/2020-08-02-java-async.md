@@ -46,10 +46,13 @@ tags: [java]
 ![image.png](/assets/images/2020/async-4.jpeg)
 图1-2-4 CompletableFuture异步执行
 
-JDK8还引入了Stream，它旨在有效地处理数据流（包括原始类型），其使用声明式编程让我们可以写出可读性、可维护性很强的代码，并且结合CompletableFuture可以完美的实现异步编程。但是它产生的流只能使用一次，并且缺少与时间相关的操作（例如RxJava中的基于时间窗口的缓存元素），虽然可以执行并行计算，但无法指定要使用的线程池。并且它还没有设计用于处理延迟的操作（例如RxJava中的defer操作）；而Reactor或RxJava等Reactive API就是为了解决这些问题而生的。
+JDK8还引入了Stream，它旨在有效地处理数据流（包括原始类型），其使用声明式编程让我们可以写出可读性、可维护性很强的代码，并且结合CompletableFuture可以完美的实现异步编程。但是它产生的流只能使用一次，并且缺少与时间相关的操作（例如RxJava中的基于时间窗口的缓存元素），虽然可以执行并行计算，但无法指定要使用的线程池，[这里有个trick可以解决这个问题](https://zhailuxu.github.io/java/2020/07/27/forkjointhreadpool.html)。并且它还没有设计用于处理延迟的操作（例如RxJava中的defer操作）；而Reactor或RxJava等Reactive API就是为了解决这些问题而生的。
 
 
 Reactor或RxJava等反应式API也提供Java 8 Stream的运算符，但它们更适用于任何流序列（不仅仅是集合），并允许定义一个转换操作的管道，该管道将应用于通过它的数据，这要归功于方便的流畅API和Lambda表达式的使用。Reactive旨在处理同步或异步操作，并允许您缓冲（buffer）、合并（merge）、连接(join) 元素等对元素做各种转换。
+
+如果你用了 JDK8 的 Stream，但是想使用 Reactive 的福利特性，那么如何做那？这里有介绍如何把  [JDK8 Stream 转换为 Reactive 框架流](https://zhailuxu.github.io/java/2020/08/02/JDK8stream.html)。
+
 
 上面我们讲解了单JVM内的异步编程，那么对于跨网络的交互是否也存在异步编程范畴那？对于网络请求来说，同步调用时比较直截了当的，比如我们在一个线程A中通过RPC请求获取服务B和服务C的数据，然后基于两者结果做一些事情。在同步调用情况下，线程A需要调用服务B，然后需要同步等待服务B结果返回后，才可以对服务C发起调用，然后等服务C结果返回后才可以结合服务B和C的结果做一件事,如下图1-2-5：
 
