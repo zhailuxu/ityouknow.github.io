@@ -11,4 +11,25 @@
  <lastmod>2019-11-03</lastmod>
  <changefreq>weekly</changefreq>
 </url>
+    
+<url>
+ <loc>https://zhailuxu.github.io/java/2020/08/02/java-concurrency.html</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-11-03</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+    
+<url>
+ <loc>https://zhailuxu.github.io/java/2020/08/02/dubbo.html</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-11-03</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+    
+<url>
+ <loc>https://zhailuxu.github.io/java/2020/08/02/java-async.html</loc>
+ <priority>0.5</priority>
+ <lastmod>2019-11-03</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
 </urlset>
