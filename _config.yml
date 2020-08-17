@@ -144,6 +144,11 @@ labels:
 classes:
 
   -
+    href: https://zhailuxu.github.io/java/2020/08/03/workneedtool.html
+    name: 程序员必备办公神器
+    describe: 快乐工作，健康生活。
+
+  -
     href: https://mp.weixin.qq.com/s/XKa0mjwgjeZbRokm61lGHw
     name: Java并发编程之美
     describe: 深度剖析JUC包原理。
