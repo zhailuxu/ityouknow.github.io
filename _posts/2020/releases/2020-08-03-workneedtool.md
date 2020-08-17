@@ -2,7 +2,6 @@
 layout: post
 title: 程序员必备的办公神器
 category: java
-no-post-nav: true
 excerpt: 工作很重要，但是照顾好我们自己的身体更重要，合理利用办公神器，无论对工作效率的提高，还是对自己的身体的负责，都是一种价值投资。
 tags: [java]
 ---
