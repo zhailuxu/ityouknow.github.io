@@ -28,7 +28,7 @@ tags: [java]
             startId = 0L;
         }
 
-        String sql = "select * from open_seller_order_info_1 where oid<= " + startId + " order by oid desc limit " + limit;
+        String sql = "select * from table where oid<= " + startId + " order by oid desc limit " + limit;
         System.out.println(sql);
         List<PersonDo> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<PersonDo>(PersonDo.class));
         return list;
